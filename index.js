@@ -125,6 +125,78 @@ function myFilter(collection, predicate) {
   return matchArray;
 }
 
+function mySize(collection) {
+  printFunction("mySize");
+  let newCollection = sanitizeCollection(collection);
+
+  let size = newCollection.length;
+
+  console.log("size: ", size);
+
+  return size;
+}
+
+function myFirst(array, n) {
+  printFunction("myFirst");
+  console.log("n: ", n);
+  console.log("array: ", array);
+  if (!n) {
+    n = 0;
+    console.log(`array[${n}]: ${array[n]}`);
+    return array[n];
+  }
+
+  let firstArray = [];
+  for (let i = 0; i < n; i++) {
+    console.log(`array[${i}]: {array[i]}`);
+    firstArray.push(array[i]);
+  }
+  console.log("firstArray: ", firstArray);
+
+  return firstArray;
+}
+
+function myLast(array, n) {
+  printFunction("myLast");
+  console.log("n: ", n);
+  console.log("array: ", array);
+  if (!n) {
+    n = array.length - 1;
+    console.log(`array[${n}]: ${array[n]}`);
+    return array[n];
+  }
+
+  let lastArray = [];
+  for (let i = array.length - n; i < array.length; i++) {
+    console.log("i: ", i);
+    console.log("n: ", n);
+    console.log(`array[${i}]: ${array[i]}`);
+    lastArray.push(array[i]);
+  }
+  console.log("lastArray: ", lastArray);
+
+  return lastArray;
+}
+
+function myKeys(keysObj) {
+  printFunction("myKeys");
+
+  console.log("keysObj: ", keysObj);
+  console.log("Object.keys(", keysObj, "): ", Object.keys(keysObj));
+
+  return Object.keys(keysObj);
+}
+
+function myValues(valuesObj) {
+  printFunction("myValues");
+
+  console.log("valuesObj: ", valuesObj);
+  console.log("Object.values(", valuesObj, "): ", Object.values(valuesObj));
+
+  return Object.values(valuesObj);
+}
+
+// TESTING SECTION:
 printTesting("myEach");
 const unmodifiedTestArr = [1, 2, 3, 4];
 const unmodifiedTestObj = {one: 1, two: 2, three: 3, four: 4};
@@ -177,3 +249,27 @@ myFind(objArr, findCBGenerator(objB));
 printTesting("myFilter");
 let filterArray = [1, 2, 3, 4, 5, 6];
 myFilter(filterArray, function(num){ return num % 2 == 0; });
+
+printTesting("mySize");
+let mySizeObject = {one: 1, two: 2, three: 3};
+mySize(mySizeObject);
+
+printTesting("myFirst");
+let firstArray = [5, 4, 3, 2, 1];
+myFirst(firstArray);
+myFirst(firstArray, 3);
+
+printTesting("myLast");
+// let lastArray = [5, 4, 3, 2, 1];
+let lastArray = [1, 2, 3, 4];
+lastArray = lastArray.slice();
+myLast(lastArray);
+myLast(lastArray, 3);
+
+printTesting("myKeys");
+let keysObj = {one: 1, two: 2, three: 3};
+myKeys(keysObj);
+
+printTesting("myValues");
+let valuesObj = {one: 1, two: 2, three: 3};
+myValues(valuesObj);
